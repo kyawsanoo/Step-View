@@ -110,7 +110,4 @@ public class App extends Application {
         return this.appTypeface;
     }
 
-    public Typeface getAppBoldTypeface(){
-        return this.appBoldTypeface;
-    }
 }

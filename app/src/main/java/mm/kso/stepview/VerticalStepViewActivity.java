@@ -17,6 +17,7 @@ public class VerticalStepViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Log.e("locale", App.getAppInstance().getPreferenceLocale().toString());
         App.getAppInstance().getLocaleAndSetLanguage(this);
+
         String[] steps = getResources().getStringArray(R.array.steps);
         setContentView(R.layout.activity_vertical_stepview);
         VerticalStepView veritcalStepView = (VerticalStepView) findViewById(R.id.vflow);
@@ -35,15 +36,12 @@ public class VerticalStepViewActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.en:
-                Toast.makeText(this, "you click en", Toast.LENGTH_LONG).show();
                 App.getAppInstance().savePreferenceLocale("en");
                 break;
             case R.id.zawgyi:
-                Toast.makeText(this, "you click mn", Toast.LENGTH_LONG).show();
                 App.getAppInstance().savePreferenceLocale("mn");
                 break;
             case R.id.mm3:
-                Toast.makeText(this, "you click my", Toast.LENGTH_LONG).show();
                 App.getAppInstance().savePreferenceLocale("my");
                 break;
         }

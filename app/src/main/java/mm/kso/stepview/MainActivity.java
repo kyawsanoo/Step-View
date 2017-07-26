@@ -21,19 +21,13 @@ public class MainActivity extends AppCompatActivity {
     HorizontalStepView horizontalStepView;
     Typeface appTypeface;
 
-    public void changeLanguage(Context context, String languageCode){
-        Locale locale = new Locale(languageCode);
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        context.getApplicationContext().getResources().updateConfiguration(config, null);
-    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.e("locale", App.getAppInstance().getPreferenceLocale().toString());
         App.getAppInstance().getLocaleAndSetLanguage(this);
         appTypeface = App.getAppInstance().getAppTypeface();
+
         String[] str = getResources().getStringArray(R.array.steps);
         setContentView(R.layout.activity_main);
         horizontalStepView = (HorizontalStepView) findViewById(R.id.horizontalStepView);
@@ -63,15 +57,12 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.en:
-                Toast.makeText(this, "you click en", Toast.LENGTH_LONG).show();
                 App.getAppInstance().savePreferenceLocale("en");
                 break;
             case R.id.zawgyi:
-                Toast.makeText(this, "you click mn", Toast.LENGTH_LONG).show();
                 App.getAppInstance().savePreferenceLocale("mn");
                 break;
             case R.id.mm3:
-                Toast.makeText(this, "you click my", Toast.LENGTH_LONG).show();
                 App.getAppInstance().savePreferenceLocale("my");
                 break;
         }
