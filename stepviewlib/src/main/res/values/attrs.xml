@@ -16,6 +16,8 @@
         <attr name="h_max_step" format="integer" />
         <attr name="h_textsize" format="dimension" />
         <attr name="h_pro_step" format="integer" />
+        <attr name="h_custom_font"   format="string"/>
+
     </declare-styleable>
 
     <declare-styleable name="VerticalStepView">
@@ -32,5 +34,6 @@
         <attr name="v_textPaddingLeft" format="dimension" />
         <attr name="v_textMoveTop" format="dimension" />
         <attr name="v_textsize" format="dimension" />
+        <attr name="v_custom_font"  format="string"/>
     </declare-styleable>
 </resources>

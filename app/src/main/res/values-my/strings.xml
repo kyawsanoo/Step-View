@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">StepView</string>
+    <string name="see_verticle">stepview သို့</string>
+    <string-array name="steps">
+        <item>စာရင်းသွင်းခြင်း</item>
+        <item>စစ်ဆေးခြင်း</item>
+        <item>ပေးချေခြင်း</item>
+        <item>e-ticketလက်မှတ်</item>
+    </string-array>
+
+</resources>

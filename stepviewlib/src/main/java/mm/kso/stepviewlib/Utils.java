@@ -6,11 +6,6 @@ package mm.kso.stepviewlib;
 
 import android.content.Context;
 
-/**
- * Created by paike on 2017/2/10.
- * xyz@163.com
- */
-
 class Utils {
     /**
      * dip to pixel

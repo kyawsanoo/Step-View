@@ -9,11 +9,15 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
+
+import static android.content.ContentValues.TAG;
 
 public class VerticalStepView extends View {
 
@@ -31,6 +35,7 @@ public class VerticalStepView extends View {
     private int maxStep;
     private int proStep;
     private int textPaddingLeft;
+    String customFont;
 
     private int textMoveTop;
     private int textsize;
@@ -63,11 +68,12 @@ public class VerticalStepView extends View {
         textPaddingLeft = (int) ta.getDimension(R.styleable.VerticalStepView_v_textPaddingLeft, 40);
         textMoveTop = (int) ta.getDimension(R.styleable.VerticalStepView_v_textMoveTop, 10);
         textsize = (int) ta.getDimension(R.styleable.VerticalStepView_v_textsize, 17);
+        customFont = ta.getString(R.styleable.VerticalStepView_v_custom_font);
         ta.recycle();
-        init();
+        init(context);
     }
 
-    private void init() {
+    private void init(Context context) {
         bgPaint = new Paint();
         bgPaint.setAntiAlias(true);
         bgPaint.setStyle(Paint.Style.FILL);
@@ -83,6 +89,20 @@ public class VerticalStepView extends View {
         textPaint = new TextPaint();
         textPaint.setTextSize(textsize);
         textPaint.setAntiAlias(true);
+        if(customFont!=null) setCustomFont(context, customFont);
+    }
+
+    public boolean setCustomFont(Context ctx, String asset) {
+        Typeface tf = null;
+        try {
+            tf = Typeface.createFromAsset(ctx.getAssets(), asset);
+        } catch (Exception e) {
+            Log.e(TAG, "Could not get typeface: "+e.getMessage());
+            return false;
+        }
+        textPaint.setTypeface(tf);
+        proPaint.setTypeface(tf);
+        return true;
     }
 
     @Override

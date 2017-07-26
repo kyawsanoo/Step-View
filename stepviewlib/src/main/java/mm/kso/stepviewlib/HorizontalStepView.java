@@ -10,11 +10,15 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
+import static android.content.ContentValues.TAG;
 
-public class HorizontalStepView extends View {
+
+public class HorizontalStepView extends View{
 
     private Paint bgPaint;
     private Paint proPaint;
@@ -32,6 +36,7 @@ public class HorizontalStepView extends View {
     private int textSize;
     private int proStep;
     private int interval;
+    String customFont;
     private String[] titles = {"step1", "step2", "step3", "step4"};
 
     public HorizontalStepView(Context context) {
@@ -55,11 +60,13 @@ public class HorizontalStepView extends View {
         maxStep = ta.getInt(R.styleable.HorizontalStepView_h_max_step, 5);
         textSize = (int) ta.getDimension(R.styleable.HorizontalStepView_h_textsize, 20);
         proStep = ta.getInt(R.styleable.HorizontalStepView_h_pro_step, 1);
+        customFont = ta.getString(R.styleable.HorizontalStepView_h_custom_font);
+
         ta.recycle();
-        init();
+        init(context);
     }
 
-    private void init() {
+    private void init(Context context) {
         bgPaint = new Paint();
         bgPaint.setAntiAlias(true);
         bgPaint.setStyle(Paint.Style.FILL);
@@ -75,9 +82,22 @@ public class HorizontalStepView extends View {
         proPaint.setStrokeWidth(lineProWidth);
         proPaint.setTextSize(textSize);
         proPaint.setTextAlign(Paint.Align.CENTER);
-
+        if(customFont!=null) setCustomFont(context, customFont);
     }
 
+    public boolean setCustomFont(Context ctx, String asset) {
+        Log.e("font_path", asset);
+        Typeface tf = null;
+        try {
+            tf = Typeface.createFromAsset(ctx.getAssets(), asset);
+        } catch (Exception e) {
+            Log.e(TAG, "Could not get typeface: "+e.getMessage());
+            return false;
+        }
+        bgPaint.setTypeface(tf);
+        proPaint.setTypeface(tf);
+        return true;
+    }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
@@ -153,6 +173,7 @@ public class HorizontalStepView extends View {
      * @param titles   titles of steps
 
      */
+
     public void setProgress(int progress, int maxStep, String[] titles) {
         proStep = progress;
         this.maxStep = maxStep;

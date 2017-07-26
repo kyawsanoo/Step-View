@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">StepView</string>
+    <string name="see_verticle">see verticle</string>
+    <string-array name="steps">
+        <item>Book</item>
+        <item>Review</item>
+        <item>Payment</item>
+        <item>Eticket</item>
+    </string-array>
+
 </resources>

@@ -25,6 +25,7 @@
         app:v_pro_step="9"
         app:v_pro_width="4dp"
         app:v_textMoveTop="7dp"
-        app:v_textsize="14dp" />
+        app:v_textsize="14dp"
+        app:v_custom_font="fonts/mm3-multi-os(16-08-2011).ttf"/>
 
 </ScrollView>
